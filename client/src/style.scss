@@ -1,8 +1,20 @@
 $lightGreen: #b9e7e7;
 
 .app {
+  display: flex;
+  justify-content: center;
+  border: 1px solid red;
+
   .container {
+    width: 1024px;
+
+    .link {
+      color: inherit;
+      text-decoration: none;
+    }
+
     // Login & Register
+
     .auth {
       border: 1px red solid;
       display: flex;
@@ -11,46 +23,95 @@ $lightGreen: #b9e7e7;
       justify-content: center;
       height: 100vh;
       background-color: $lightGreen;
-    }
+      h1 {
+        color: teal;
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
 
-    h1 {
-      color: teal;
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
+      form {
+        display: flex;
+        flex-direction: column;
+        padding: 50px;
+        background-color: white;
+        width: 200px;
+        gap: 20px;
+      }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      padding: 50px;
-      background-color: white;
-      width: 200px;
-      gap: 20px;
-    }
+      input {
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid gray;
+      }
 
-    input {
-      padding: 10px;
-      border: none;
-      border-bottom: 1px solid gray;
-    }
+      button {
+        // border: 1px solid red;
+        padding: 10px;
+        background-color: teal;
+        color: white;
+        cursor: pointer;
+      }
 
-    button {
-      // border: 1px solid red;
-      padding: 10px;
-      background-color: teal;
-      color: white;
-      cursor: pointer;
-    }
+      p {
+        font-size: 12px;
+        color: red;
+        text-align: center;
+      }
 
-    p {
-      font-size: 12px;
-      color: red;
-      text-align: center;
+      span {
+        font-size: 12px;
+        text-align: center;
+      }
     }
+    // Navbar
+    .navbar {
+      .container {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border: 1px red solid;
+        align-items: center;
 
-    span {
-      font-size: 12px;
-      text-align: center;
+        .logo {
+          img {
+            width: 120px;
+          }
+        }
+
+        .links {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          h6 {
+            font-size: 16px;
+            font-weight: 300;
+          }
+
+          span {
+            cursor: pointer;
+          }
+
+          .write {
+            background-color: $lightGreen;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 300;
+            border: 1px solid white;
+
+            &:hover {
+              color: teal;
+              background-color: white;
+              border: 1px solid teal;
+              // this hover event actually add two more px around it comapre to before, which is why it changes like that
+            }
+          }
+        }
+      }
     }
   }
 }
