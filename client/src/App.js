@@ -8,13 +8,19 @@ import Login from './pages/Login'
 import Home from './pages/Home'
 import Write from './pages/Write'
 import Single from './pages/Single'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
 function App() {
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <div>this is homesdlkfjlksdj!</div>,
+      element: <div>
+        <Navbar />
+        <Home />
+        <Footer />
+      </div>,
     },
     {
       path: "/register",
