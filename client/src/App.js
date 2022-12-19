@@ -33,7 +33,7 @@ function App() {
         element: <Home />
       },
       {
-        path: "/single",
+        path: "/post/:id",
         element: <Single />
       },
       {
