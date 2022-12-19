@@ -6,8 +6,9 @@ const Register = () => {
     <div className="auth">
       <h1 className="">Register</h1>
       <form action="" className="">
-        <input type="text" placeholder="username" />
-        <input type="text" placeholder="password" />
+        <input required type="text" placeholder="username" />
+        <input required type="email" placeholder="email" />
+        <input required type="password" placeholder="password" />
         <button>Register</button>
         <p className="">This is an error</p>
         <span>
