@@ -1,5 +1,11 @@
 import express from "express";
-import { addPost } from "../controller/post.js";
+import {
+  addPost,
+  deletePost,
+  getPost,
+  getPosts,
+  updatePost,
+} from "../controller/post.js";
 
 const router = express.Router();
 
@@ -8,6 +14,12 @@ const router = express.Router();
 //   res.json("from posts.js");
 // });
 
-router.use("/test", addPost);
+// router.use("/test", addPost);
+
+router.get("/", getPosts);
+router.get("/:id", getPost);
+router.post("/", addPost);
+router.delete("/", deletePost);
+router.put("/", updatePost);
 
 export default router;

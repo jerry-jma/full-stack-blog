@@ -65,5 +65,5 @@ export const logout = (req, res) => {
       secure: true,
     })
     .status(200)
-    .json("user");
+    .json("user has been logged out");
 };
