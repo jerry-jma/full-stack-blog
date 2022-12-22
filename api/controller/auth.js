@@ -36,6 +36,7 @@ export const login = (req, res) => {
 
     console.log(data);
 
+    // check password
     const isPasswordCorrect = bcrypt.compareSync(
       req.body.password,
       data[0].password
@@ -57,4 +58,12 @@ export const login = (req, res) => {
   });
 };
 
-export const logout = (req, res) => {};
+export const logout = (req, res) => {
+  res
+    .clearCookie("access_token", {
+      sameSite: "none",
+      secure: true,
+    })
+    .status(200)
+    .json("user");
+};
