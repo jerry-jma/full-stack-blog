@@ -1,5 +1,6 @@
 import { db } from "../db.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export const register = (req, res) => {
   // Check existing users
@@ -33,6 +34,8 @@ export const login = (req, res) => {
       return res.status(404).json("User not found");
     }
 
+    console.log(data);
+
     const isPasswordCorrect = bcrypt.compareSync(
       req.body.password,
       data[0].password
@@ -41,6 +44,16 @@ export const login = (req, res) => {
     if (!isPasswordCorrect) {
       return res.status(400).json("Wrong username or password");
     }
+    console.log("data from auth login" + JSON.stringify(data[0]));
+    const { password, ...other } = data[0];
+    const token = jwt.sign({ id: data[0].id }, "jwtkey");
+
+    res
+      .cookie("access_token", token, {
+        httpOnly: true,
+      })
+      .status(200)
+      .json(other);
   });
 };
 

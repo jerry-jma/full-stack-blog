@@ -2,10 +2,12 @@ import express from "express";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 
 // we could just use app.get() to call the exact endpoint, but with many same endpoints, the file can become messy. Also, with Router and controller folder, we seperate these complexity out to speific file, it is easlier to manage
 
