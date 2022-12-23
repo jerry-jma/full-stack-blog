@@ -70,4 +70,22 @@ export const deletePost = (req, res) => {
     });
   });
 };
-export const updatePost = (req, res) => {};
+export const updatePost = (req, res) => {
+  const token = req.cookies.access_token;
+  if (!token) return res.status(401).json("Not Authenticated");
+
+  jwt.verify(token, "jwtkey", (err, userInfo) => {
+    if (err) return res.status(401).json("token is not valid");
+    const postId = req.params.id;
+    const userId = userInfo.id;
+
+    const q =
+      "UPDATE posts SET `title`=?, `desc`=?, `img`=?, `cat`=? WHERE `id`=? AND `uid`=?";
+    const values = [req.body.title, req.body.desc, req.body.img, req.body.cat];
+
+    db.query(q, [...values, postId, userId], (err, data) => {
+      if (err) return res.status(500).json(err);
+      return res.json("Posts has been updated");
+    });
+  });
+};
