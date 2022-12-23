@@ -15,7 +15,7 @@ export const getPosts = (req, res) => {
 
 export const getPost = (req, res) => {
   const q =
-    "SELECT `username`, `title`, `desc`, p.img, u.img AS userImg, `cat`, `date` FROM users u JOIN posts p ON u.id = p.uid WHERE p.id = ? ";
+    "SELECT p.id, `username`, `title`, `desc`, p.img, u.img AS userImg, `cat`, `date` FROM users u JOIN posts p ON u.id = p.uid WHERE p.id = ? ";
 
   db.query(q, [req.params.id], (err, data) => {
     if (err) return res.status(500).json(err);
@@ -23,7 +23,14 @@ export const getPost = (req, res) => {
   });
 };
 
-export const addPost = (req, res) => {};
+export const addPost = (req, res) => {
+  const token = req.cookies.access_token;
+  if (!token) return res.status(401).json("Not Authenticated");
+
+  jwt.verify(token, "jwtkey", (err, userInfo) => {
+    if (err) return res.status(401).json("token is not valid");
+  });
+};
 
 export const deletePost = (req, res) => {
   // need to check if there is a json web token (no token, meaning we are not logged in or authicate, so not allow to delete)
