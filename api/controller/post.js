@@ -28,7 +28,6 @@ export const addPost = (req, res) => {};
 export const deletePost = (req, res) => {
   // need to check if there is a json web token (no token, meaning we are not logged in or authicate, so not allow to delete)
   // and check if the post actually belongs to us
-
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Not authenticated");
 
